@@ -1,0 +1,47 @@
+<h1 class="display-4" style="text-align: center;">{{title}}</h1>
+<h4 style="text-align: right;">Welcome {{username}}</h4>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" href="assetadd">Add Asset</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="assetlist">Asset List</a>
+  </li>
+  <li class="nav-item">
+    <button (click)="logOut()"  class="btn btn-primary">Logout</button>
+  </li>
+</ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th>Asset ID</th>
+            <th>Asset Name</th>
+            <th>Asset Type</th>
+            <th>Asset Class</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of assets | async">
+            <td>{{asset.assetId}}</td>
+            <td>{{asset.assetName}}</td>
+            <td>{{asset.assetType}}</td>
+            <td>{{asset.assetClass}} </td>
+            <td><button mwlConfirmationPopover
+                [popoverTitle]="popoverTitle"
+                [popoverMessage]="popoverMessage"
+                placement="left"
+                (confirm)="confirmClicked = true"
+                (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default" (click)="confirmClicked=false;cancelClicked=false" [appendToBody]="true" (confirm)=DeleteAsset(asset.assetId) class="btn btn-outline-danger">Delete</button>
+              <button [routerLink]="['/assetedit',asset.assetId]"  class="btn btn-info" style="margin-left: 10px">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
