@@ -26,7 +26,7 @@ public popoverTitle: string = 'Delete';
     this.assets=this.assetservice.getAssetList();
     this.username=localStorage.getItem('userID');
   }
-  DeleteAsset(id:number)
+  DeleteAsset(id:number) //function to delete assets
   {
     this.assetservice.deleteAsset(id).subscribe(x=>{
       this.toastr.error('Asset Deleted',':(');

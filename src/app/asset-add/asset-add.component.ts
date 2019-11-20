@@ -26,7 +26,7 @@ export class AssetAddComponent implements OnInit {
   constructor(private assetservice:AssetService,private asFormBuilder:FormBuilder,private toastr:ToastrService,private router:Router,private authservice:AuthService) { }
 
   ngOnInit() {
-    this.assettypes=this.assetservice.getAssettypes();
+    this.assettypes=this.assetservice.getAssettypes(); //Populate the dropdown using this function
     this.assetForm=this.asFormBuilder.group({
       assetName:['',Validators.required],
       assetType:['',Validators.required],
@@ -37,7 +37,7 @@ export class AssetAddComponent implements OnInit {
   get formControls(){
     return this.assetForm.controls;
   }
-  addAsset()
+  addAsset() //function to add assets
   {
     this.isSubmitted=true;
     if(this.assetForm.invalid)
@@ -63,11 +63,11 @@ export class AssetAddComponent implements OnInit {
     })
    
  }
- clearMessage()
+ clearMessage() //function to clear the message on textchange event of the textbox 
  {
    this.message=""
  }
- logOut()
+ logOut() //Logout and re-route to login component
   {
     this.authservice.logout();
     this.router.navigate(['login']);

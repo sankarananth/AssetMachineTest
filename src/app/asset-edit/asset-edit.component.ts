@@ -49,7 +49,7 @@ export class AssetEditComponent implements OnInit {
     this.asset.ad_type_id=this.assetForm.controls.assetType.value;
     this.asset.ad_class=this.assetForm.controls.assetclass.value;
     this.assetservice.updateAsset(this.id,this.asset).subscribe(x=>{
-      this.toastr.success('Update Succesfull','Great!')
+      this.toastr.success('Update Successfull','Great!')
       this.ngOnInit();
     })
   }
