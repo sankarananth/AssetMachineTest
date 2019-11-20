@@ -33,16 +33,16 @@ export class AssetEditComponent implements OnInit {
       assetclass:[Validators.required]
     });
     this.id=this.route.snapshot.params["id"];
-    this.assettypes=this.assetservice.getAssettypes();
+    this.assettypes=this.assetservice.getAssettypes(); //Populate the dropdown using this function
     this.assetservice.getAsset(this.id).subscribe(x=>{
         this.asset=x;
     });
-    this.username=localStorage.getItem('userID');
+    this.username=localStorage.getItem('userID');//Afte login this gets the entered username/email
   }
   get formControls(){
     return this.assetForm.controls;
   }
-  upAsset()
+  upAsset() //update asset using this function
   {
     this.asset.ad_id=this.id;
     this.asset.ad_name=this.assetForm.controls.assetName.value;

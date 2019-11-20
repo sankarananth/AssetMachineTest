@@ -32,7 +32,7 @@ export class AssetAddComponent implements OnInit {
       assetType:['',Validators.required],
       assetclass:['',Validators.required]
     });
-    this.username=localStorage.getItem('userID');
+    this.username=localStorage.getItem('userID'); //Afte login this gets the entered username/email
   }
   get formControls(){
     return this.assetForm.controls;

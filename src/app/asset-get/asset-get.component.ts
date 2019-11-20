@@ -24,7 +24,7 @@ public popoverTitle: string = 'Delete';
 
   ngOnInit() {
     this.assets=this.assetservice.getAssetList();
-    this.username=localStorage.getItem('userID');
+    this.username=localStorage.getItem('userID');//Afte login this gets the entered username/email
   }
   DeleteAsset(id:number) //function to delete assets
   {
