@@ -15,7 +15,7 @@ export class AuthService {
   {
     localStorage.setItem('ACCESS_TOKEN','access_token');
     localStorage.setItem('userID',userinfo.email);
-    return this.http.get(this.baseUrl+'/logintbls?user='+userinfo.email+'&pass='+userinfo.password)
+    return this.http.get(this.baseUrl+'/login?user='+userinfo.email+'&pass='+userinfo.password)
   }
   public isLoggedIn(){
     return localStorage.getItem('ACCESS_TOKEN')!==null;

@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { UserComponent } from './user/user.component';
 import { AuthService } from './auth.service';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { VendorAddComponent } from './vendor-add/vendor-add.component';
+import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
 
 
 
@@ -16,7 +19,10 @@ const routes: Routes = [
   {path:'user',component:UserComponent,canActivate:[AuthGuard]},
   {path:'assetlist',component:AssetGetComponent,canActivate:[AuthGuard]},
   {path:'assetadd',component:AssetAddComponent,canActivate:[AuthGuard]},
-  {path:'assetedit/:id',component:AssetEditComponent,canActivate:[AuthGuard]}
+  {path:'assetedit/:id',component:AssetEditComponent,canActivate:[AuthGuard]},
+  {path:'vendorlist',component:VendorListComponent},
+  {path:'vendoradd',component:VendorAddComponent},
+  {path:'vendoredit/:id',component:VendorEditComponent}
 ];
 
 @NgModule({

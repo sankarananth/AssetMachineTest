@@ -8,7 +8,6 @@ import { Asset } from './asset';
   providedIn: 'root'
 })
 export class AssetService {
-  count:number;
 baseUrl=environment.rootUrl;
   constructor(private http:HttpClient) { }
   getAssetList():Observable<any>
@@ -17,7 +16,7 @@ baseUrl=environment.rootUrl;
   }
   getAssettypes():Observable<any>
   {
-    return this.http.get(this.baseUrl+'/assettypes')
+    return this.http.get(this.baseUrl+'/assettype')
   }
   checkAsset(asset:Asset):Observable<any>
   {

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AssetService } from '../asset.service';
 import { Asset } from '../asset';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-asset-get',

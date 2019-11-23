@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]]
+      email: ['', Validators.required],
+      password: ['',Validators.required]
     });
   }
   get formControls() {
@@ -34,19 +34,22 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isSubmitted = true;
+    
     if (this.loginForm.invalid) {
       return;
     }
-    this.authservice.login(this.loginForm.value)
+   this.loginuser=this.loginForm.value;
+    console.log(this.loginuser);
+    this.authservice.login(this.loginuser)
     .subscribe(x => {
       x.forEach(element => {
-        this.users.r_id = element["r_id"];
+        this.users.utype = element["utype"];
       })
-      if (this.users.r_id == 1) {
+      if (this.users.utype == "Admin") {
         this.router.navigate(['assetlist']);
         this.toastr.info('Welcome Admin')
       }
-      else if(this.users.r_id == 2) 
+      else if(this.users.utype == "Purchase Manager") 
       {
         this.router.navigate(['user']);
         this.toastr.info('Welcome User')

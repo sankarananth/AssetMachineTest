@@ -14,6 +14,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { VendorAddComponent } from './vendor-add/vendor-add.component';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +25,10 @@ import { UserComponent } from './user/user.component';
     AssetGetComponent,
     AssetEditComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    VendorAddComponent,
+    VendorListComponent,
+    VendorEditComponent
   ],
   imports: [
     BrowserModule,

@@ -2,16 +2,18 @@
 <h4 style="text-align: right;">Welcome {{username}}</h4>
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
-    <a class="nav-link active" href="assetadd">Add Asset</a>
+    <a class="nav-link active" href="assetlist">Asset Definition</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="assetlist">Asset List</a>
+    <a class="nav-link" href="vendorlist">Vendor Creation</a>
   </li>
   <li class="nav-item">
-    <button (click)="logOut()"  class="btn btn-primary">Logout</button>
+    <a class="nav-link" href="purchaselist">Purchase Order</a>
+  </li>
+  <li class="nav-item">
+    <button (click)="logOut()"  class="btn btn-danger">Logout</button>
   </li>
 </ul>
-
 <form  [formGroup]="assetForm" (ngSubmit)="upAsset()">
     <input type="hidden" [(ngModel)]="asset.ad_id"  fromControlName="assetId">
         <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
