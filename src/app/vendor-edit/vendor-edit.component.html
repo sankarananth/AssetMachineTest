@@ -1,1 +1,75 @@
-<p>vendor-edit works!</p>
+<h1 class="display-4" style="text-align: center;">{{title}}</h1>
+<h4 style="text-align: right;">Welcome {{username}}</h4>
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+        <a class="nav-link active" href="assetlist">Asset Definition</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="vendorlist">Vendor Creation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="purchaselist">Purchase Order</a>
+    </li>
+    <li class="nav-item">
+        <button (click)="logOut()" class="btn btn-danger">Logout</button>
+    </li>
+</ul>
+<form [formGroup]="vendorForm" (ngSubmit)="updateVendor()">
+    <input type="hidden" formControlName="vendorId">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vendorname.errors || formControls.vendorname.touched || formControls.vendorname.dirty }">
+        <label for="vendorname"><b>Vendor Name</b></label>
+        <input type="text" class="form-control"  placeholder="Enter Vendor Name" formControlName="vendorname">
+    </div>
+    <div *ngIf="isSubmitted && formControls.vendorname.errors" class="help-block">
+        <div *ngIf="formControls.vendorname.errors.required">Vendor Name is required</div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vendortype.errors || formControls.vendortype.touched || formControls.vendortype.dirty }">
+        <label for="vendortype"><b>Vendor Type</b></label>
+        <input type="text" class="form-control"  placeholder="Enter Vendor Name" formControlName="vendortype">
+    </div>
+    <div *ngIf="isSubmitted && formControls.vendortype.errors" class="help-block">
+        <div *ngIf="formControls.vendortype.errors.required">Vendor Type is required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="vassettype"><b>Asset Type</b></label>
+        <select class="form-control" id="assettype" name="assettype"  formControlName="vassettype">
+            <option value="">Select Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}</option>
+        </select>
+    </div>
+    <div *ngIf="isSubmitted && formControls.vassettype.errors" class="help-block">
+        <div *ngIf="formControls.vassettype.errors.required">Asset Type is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vfromdate.errors || formControls.vfromdate.touched || formControls.vfromdate.dirty }">
+        <label for="vfromdate"><b>Vendor From</b></label>
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="vfromdate">
+    </div>
+    <div *ngIf="isSubmitted && formControls.vfromdate.errors" class="help-block">
+        <div *ngIf="formControls.vfromdate.errors.required">Vendor Date is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vtodate.errors || formControls.vtodate.touched || formControls.vtodate.dirty }">
+        <label for="vtodate"><b>Vendor To</b></label>
+        <input type="date"  class="form-control" placeholder="Enter the date" formControlName="vtodate">
+    </div>
+    <div *ngIf="isSubmitted && formControls.vfromdate.errors" class="help-block">
+        <div *ngIf="formControls.vfromdate.errors.required">Vendor Date is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vaddress.errors || formControls.vaddress.touched || formControls.vaddress.dirty }">
+        <label for="vaddress"><b>Vendor Address</b></label>
+        <textarea class="form-control" formControlName="vaddress" placeholder="Enter the Address" rows="3"></textarea>
+    </div>
+    <div *ngIf="isSubmitted && formControls.vaddress.errors" class="help-block">
+        <div *ngIf="formControls.vaddress.errors.required">Enter a Valid Description</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Vendor</button>
+</form>

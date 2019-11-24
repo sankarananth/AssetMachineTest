@@ -18,4 +18,12 @@ export class VendorService {
   {
     return this.http.post(this.baseUrl+'/vendor',vendor);
   }
+  getVendor(id:number):Observable<any>
+  {
+     return this.http.get(this.baseUrl+'/vendor/'+id);
+  }
+  updateVendor(id:number,vendor:Vendor)
+  {
+    return this.http.put(this.baseUrl+'/vendor/'+id,vendor)
+  }
 }

@@ -53,7 +53,7 @@ export class AssetAddComponent implements OnInit {
       if (x == 0) {
         this.assetservice.addAssets(this.asset).subscribe(x => {
           this.toastr.success('Assets Added', 'Good for you');
-          this.ngOnInit();
+          this.assetForm.reset();
         })
       }
       else{

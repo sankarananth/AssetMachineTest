@@ -49,6 +49,7 @@ export class VendorAddComponent implements OnInit {
     console.log(this.vendor);
     this.vendorservice.addVendor(this.vendor).subscribe(x=>{
       this.toastr.success('Vendor Added','Good Work!')
+      this.vendorForm.reset();
     });
   }
   logOut() //Logout and re-route to login component

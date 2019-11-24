@@ -36,7 +36,12 @@ export class AssetEditComponent implements OnInit {
     this.assettypes=this.assetservice.getAssettypes(); //Populate the dropdown using this function
     this.assetservice.getAsset(this.id).subscribe(x=>{
         this.asset=x;
+    this.assetForm.controls['assetId'].setValue(this.asset.ad_id);
+    this.assetForm.controls['assetName'].setValue(this.asset.ad_name);
+    this.assetForm.controls['assetType'].setValue(this.asset.ad_type_id);
+    this.assetForm.controls['assetclass'].setValue(this.asset.ad_class);
     });
+    console.log(this.assetForm.value)
     this.username=localStorage.getItem('userID');//Afte login this gets the entered username/email
   }
   get formControls(){
@@ -50,8 +55,8 @@ export class AssetEditComponent implements OnInit {
     this.asset.ad_class=this.assetForm.controls.assetclass.value;
     this.assetservice.updateAsset(this.id,this.asset).subscribe(x=>{
       this.toastr.success('Update Successfull','Great!')
-      this.ngOnInit();
-    })
+      this.assetForm.reset();
+    });
   }
   logOut()
   {

@@ -15,10 +15,10 @@
   </li>
 </ul>
 <form  [formGroup]="assetForm" (ngSubmit)="upAsset()">
-    <input type="hidden" [(ngModel)]="asset.ad_id"  fromControlName="assetId">
+    <input  type="hidden"    fromControlName="assetId">
         <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
           <label for="assetName"><b>Asset Name</b></label>
-          <input type="text" class="form-control" [(ngModel)]="asset.ad_name"  aria-describedby="emailHelp" placeholder="Enter Asset Name" formControlName="assetName">
+          <input  type="text"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter Asset Name" formControlName="assetName">
         </div>
         <div *ngIf="isSubmitted && formControls.assetName.errors" class="help-block">
             <div *ngIf="formControls.assetName.errors.required">Asset Name is required</div>
@@ -28,18 +28,18 @@
          </div>
          <div class="form-group">
             <label for="assetType"><b>Asset Type</b></label>
-                <select class="form-control" id="assettype" name="assettype" [(ngModel)]="asset.ad_type_id"  formControlName="assetType">
+                <select class="form-control" id="assettype" name="assettype"   formControlName="assetType">
                         <option value="">Select Asset Type</option>
                         <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}</option>
                 </select>
         </div>
         <div class="form-group">
             <label for="assetclass"><b>Asset Class</b></label>
-                <select class="form-control" [(ngModel)]="asset.ad_class"  formControlName="assetclass">
+                <select class="form-control"   formControlName="assetclass">
                         <option value="">Select Asset Class</option>
                         <option value="HW">HW</option>
                         <option value="SW">SW</option>
                 </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update Asset</button>
 </form>
