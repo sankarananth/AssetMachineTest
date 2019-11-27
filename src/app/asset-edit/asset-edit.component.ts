@@ -53,9 +53,17 @@ export class AssetEditComponent implements OnInit {
     this.asset.ad_name=this.assetForm.controls.assetName.value;
     this.asset.ad_type_id=this.assetForm.controls.assetType.value;
     this.asset.ad_class=this.assetForm.controls.assetclass.value;
-    this.assetservice.updateAsset(this.id,this.asset).subscribe(x=>{
-      this.toastr.success('Update Successfull','Great!')
-      this.assetForm.reset();
+    this.assetservice.checkAsset(this.asset).subscribe(x=>{
+if(x==0)
+{
+  this.assetservice.updateAsset(this.id,this.asset).subscribe(x=>{
+    this.toastr.success('Update Successfull','Great!')
+    this.assetForm.reset();
+  });
+}
+else{
+  this.message="This Asset Already exists";
+}
     });
   }
   logOut()

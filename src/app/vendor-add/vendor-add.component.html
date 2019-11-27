@@ -31,7 +31,7 @@
     <div class="form-group"
         [ngClass]="{'has-error': isSubmitted && formControls.vendortype.errors || formControls.vendortype.touched || formControls.vendortype.dirty }">
         <label for="vendortype"><b>Vendor Type</b></label>
-        <input type="text" class="form-control" placeholder="Enter Vendor Name" formControlName="vendortype">
+        <input type="text" class="form-control"  formControlName="vendortype" disabled>
     </div>
     <div *ngIf="isSubmitted && formControls.vendortype.errors" class="help-block">
         <div *ngIf="formControls.vendortype.errors.required">Vendor Type is required</div>
@@ -50,7 +50,7 @@
     <div class="form-group"
         [ngClass]="{'has-error': isSubmitted && formControls.vfromdate.errors || formControls.vfromdate.touched || formControls.vfromdate.dirty }">
         <label for="vfromdate"><b>Vendor From</b></label>
-        <input type="date" class="form-control" placeholder="Enter the date" formControlName="vfromdate">
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="vfromdate" useValueAsDate>
     </div>
     <div *ngIf="isSubmitted && formControls.vfromdate.errors" class="help-block">
         <div *ngIf="formControls.vfromdate.errors.required">Vendor Date is required</div>
@@ -58,7 +58,10 @@
     <div class="form-group"
         [ngClass]="{'has-error': isSubmitted && formControls.vtodate.errors || formControls.vtodate.touched || formControls.vtodate.dirty }">
         <label for="vtodate"><b>Vendor To</b></label>
-        <input type="date" class="form-control" placeholder="Enter the date" formControlName="vtodate">
+        <input type="date" class="form-control"  placeholder="Enter the date"  formControlName="vtodate" useValueAsDate>
+    </div>
+    <div *ngIf="vendorForm.errors" class="alert alert-danger">
+            {{vendorForm.errors?.dates}}
     </div>
     <div *ngIf="isSubmitted && formControls.vfromdate.errors" class="help-block">
         <div *ngIf="formControls.vfromdate.errors.required">Vendor Date is required</div>
@@ -71,5 +74,5 @@
     <div *ngIf="isSubmitted && formControls.vaddress.errors" class="help-block">
         <div *ngIf="formControls.vaddress.errors.required">Enter a Valid Description</div>
     </div>
-    <button type="submit" class="btn btn-primary">Add Vendor</button>
+    <button type="submit" [disabled]="!vendorForm.valid" class="btn btn-success">Add Vendor</button>
 </form>

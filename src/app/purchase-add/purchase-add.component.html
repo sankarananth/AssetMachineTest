@@ -1,1 +1,71 @@
-<p>purchase-add works!</p>
+<h1 class="display-4" style="text-align: center;">{{title}}</h1>
+<h4 style="text-align: right;">Welcome {{username}}</h4>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="assetlist">Asset Definition</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vendorlist">Vendor Creation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="purchaselist">Purchase Order</a>
+            </li>
+            <button style="text-align: right;" (click)="logOut()" class="btn btn-danger">Logout</button>
+        </ul>
+      </nav>
+<form [formGroup]="purchaseForm" (ngSubmit)="addPurchaseOrder()">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.purchaseOrderno.errors || formControls.purchaseOrderno.touched || formControls.purchaseOrderno.dirty }">
+        <label for="purchaseOrderno"><b>Order No.</b></label>
+        <input type="text" class="form-control" (ngModelChange)="clearMessage()" placeholder="Enter Vendor Name"
+            formControlName="purchaseOrderno" disabled>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
+        <label for="assetName"><b>Asset Name</b></label>
+        <input type="text" class="form-control" placeholder="Enter the Asset Name"  formControlName="assetName"><button class="btn btn-primary" (click)="searchAsset()">Search</button>
+    </div>
+    <div *ngIf="isSubmitted && formControls.assetName.errors" class="help-block">
+        <div *ngIf="formControls.assetName.errors.required">Asset Name is required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="assetType"><b>Asset Type</b></label>
+        <select class="form-control" id="assettype" name="assettype" formControlName="assetType">
+            <option value="">Select Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}</option>
+        </select>
+    </div>
+    <div *ngIf="isSubmitted && formControls.assetType.errors" class="help-block">
+        <div *ngIf="formControls.assetType.errors.required">Asset Type is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.purchaseQty.errors || formControls.purchaseQty.touched || formControls.purchaseQty.dirty }">
+        <label for="purchaseQty"><b>Purchase Quantity</b></label>
+        <input type="number" class="form-control" placeholder="Enter the Quantity" formControlName="purchaseQty">
+    </div>
+    <div *ngIf="isSubmitted && formControls.purchaseQty.errors" class="help-block">
+        <div *ngIf="formControls.purchaseQty.errors.required">Vendor Date is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.vendorName.errors || formControls.vendorName.touched || formControls.vendorName.dirty }">
+        <label for="vendorName"><b>Vendor Name</b></label>
+        <input type="text" class="form-control"  placeholder="Enter the Name"  formControlName="vendorName">
+    </div>
+    <div *ngIf="isSubmitted && formControls.vendorName.errors" class="help-block">
+        <div *ngIf="formControls.vendorName.errors.required">Vendor Name is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.orderDate.errors || formControls.orderDate.touched || formControls.orderDate.dirty }">
+        <label for="orderDate"><b>Order Date</b></label>
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="orderDate">
+    </div>
+    <div *ngIf="isSubmitted && formControls.orderDate.errors" class="help-block">
+        <div *ngIf="formControls.orderDate.errors.required">Date is required</div>
+    </div>
+    <button type="submit" [disabled]="!purchaseForm.valid" class="btn btn-success">Order</button>
+</form>

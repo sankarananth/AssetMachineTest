@@ -26,18 +26,18 @@ export class AssetAddComponent implements OnInit {
   constructor(private assetservice:AssetService,private asFormBuilder:FormBuilder,private toastr:ToastrService,private router:Router,private authservice:AuthService) { }
 
   ngOnInit() {
-    this.assettypes=this.assetservice.getAssettypes(); //Populate the dropdown using this function
+    this.assettypes=this.assetservice.getAssettypes();//Populate the dropdown using this function
     this.assetForm=this.asFormBuilder.group({
-      assetName:['',Validators.required],
+      assetName:['',Validators.compose([Validators.required,Validators.pattern('^([a-zA-Z -]+)$')])],
       assetType:['',Validators.required],
       assetclass:['',Validators.required]
     });
-    this.username=localStorage.getItem('userID'); //Afte login this gets the entered username/email
+    this.username=localStorage.getItem('userID');//After login this gets the entered username/email
   }
   get formControls(){
     return this.assetForm.controls;
   }
-  addAsset() //function to add assets
+  addAsset()//function to add assets
   {
     this.isSubmitted=true;
     if(this.assetForm.invalid)
@@ -60,14 +60,14 @@ export class AssetAddComponent implements OnInit {
             this.message="This Asset Already exists";
       } 
       
-    })
+    });
    
  }
- clearMessage() //function to clear the message on textchange event of the textbox 
+ clearMessage()//function to clear the message on textchange event of the textbox 
  {
    this.message=""
  }
- logOut() //Logout and re-route to login component
+ logOut()//Logout and re-route to login component
   {
     this.authservice.logout();
     this.router.navigate(['login']);

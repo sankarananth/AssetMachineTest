@@ -49,7 +49,7 @@
                 [popoverMessage]="popoverMessage"
                 placement="left"
                 (confirm)="confirmClicked = true"
-                (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default" (click)="confirmClicked=false;cancelClicked=false" [appendToBody]="true" (confirm)=DeleteAsset(vendor.vendorId) class="btn btn-outline-danger">Delete</button>
+                (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default" (click)="confirmClicked=false;cancelClicked=false" [appendToBody]="true" (confirm)=deleteVendor(vendor.vendorId) class="btn btn-outline-danger">Delete</button>
               <button [routerLink]="['/vendoredit',vendor.vendorId]"  class="btn btn-info" style="margin-left: 10px">Update</button>
             </td>
           </tr>

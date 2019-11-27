@@ -14,6 +14,10 @@ export class VendorService {
   {
     return this.http.get(this.baseUrl+'/vendor');
   }
+  checkVendor(vendor:Vendor):Observable<any>
+  {
+    return this.http.get(this.baseUrl+'/vendor?name='+vendor.vd_name);
+  }
   addVendor(vendor:Vendor)
   {
     return this.http.post(this.baseUrl+'/vendor',vendor);
@@ -24,6 +28,10 @@ export class VendorService {
   }
   updateVendor(id:number,vendor:Vendor)
   {
-    return this.http.put(this.baseUrl+'/vendor/'+id,vendor)
+    return this.http.put(this.baseUrl+'/vendor/'+id,vendor);
+  }
+  deleteV(id:number)
+  {
+    return this.http.delete(this.baseUrl+'/vendor/'+id);
   }
 }

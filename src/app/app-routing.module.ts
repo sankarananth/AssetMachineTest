@@ -10,6 +10,9 @@ import { AuthService } from './auth.service';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { VendorAddComponent } from './vendor-add/vendor-add.component';
 import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
+import { PurchaseListComponent } from './purchase-list/purchase-list.component';
+import { PurchaseAddComponent } from './purchase-add/purchase-add.component';
+import { PurchaseEditComponent } from './purchase-edit/purchase-edit.component';
 
 
 
@@ -22,7 +25,10 @@ const routes: Routes = [
   {path:'assetedit/:id',component:AssetEditComponent,canActivate:[AuthGuard]},
   {path:'vendorlist',component:VendorListComponent},
   {path:'vendoradd',component:VendorAddComponent},
-  {path:'vendoredit/:id',component:VendorEditComponent}
+  {path:'vendoredit/:id',component:VendorEditComponent},
+  {path:'purchaselist',component:PurchaseListComponent},
+  {path:'purchaseadd',component:PurchaseAddComponent},
+  {path:'purchaseedit/:id',component:PurchaseEditComponent}
 ];
 
 @NgModule({

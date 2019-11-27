@@ -19,7 +19,7 @@
     <div class="form-group"
         [ngClass]="{'has-error': isSubmitted && formControls.vendorname.errors || formControls.vendorname.touched || formControls.vendorname.dirty }">
         <label for="vendorname"><b>Vendor Name</b></label>
-        <input type="text" class="form-control"  placeholder="Enter Vendor Name" formControlName="vendorname">
+        <input type="text" class="form-control" (ngModelChange)="clearMessage()"  placeholder="Enter Vendor Name" formControlName="vendorname">
     </div>
     <div *ngIf="isSubmitted && formControls.vendorname.errors" class="help-block">
         <div *ngIf="formControls.vendorname.errors.required">Vendor Name is required</div>
@@ -60,9 +60,12 @@
         <label for="vtodate"><b>Vendor To</b></label>
         <input type="date"  class="form-control" placeholder="Enter the date" formControlName="vtodate">
     </div>
-    <div *ngIf="isSubmitted && formControls.vfromdate.errors" class="help-block">
-        <div *ngIf="formControls.vfromdate.errors.required">Vendor Date is required</div>
+    <div *ngIf="isSubmitted && formControls.vtodate.errors" class="help-block">
+        <div *ngIf="formControls.vtodate.errors.required">Vendor Date is required</div>
     </div>
+    <div *ngIf="vendorForm.errors" class="alert alert-danger">
+        {{vendorForm.errors?.dates}}
+</div>
     <div class="form-group"
         [ngClass]="{'has-error': isSubmitted && formControls.vaddress.errors || formControls.vaddress.touched || formControls.vaddress.dirty }">
         <label for="vaddress"><b>Vendor Address</b></label>
