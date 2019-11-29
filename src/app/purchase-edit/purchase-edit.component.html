@@ -1,1 +1,42 @@
-<p>purchase-edit works!</p>
+<nav id="navbar" class="push better-nav fixed-top">
+    <div class="container">
+        <div class="head">
+            <a href="#" class="brand">
+                <div class="logo">
+                    <img class="image"
+                        src="https://i0.wp.com/strategichospitalityservices.com/wp-content/uploads/2018/06/Icons-16.png?w=301"
+                        data2x="https://66.media.tumblr.com/avatar_2dcdc7cf5b47_128.png" alt="Branding" />
+                </div>
+                <div class="title">
+                    <h3>Asset Management System</h3>
+                </div>
+            </a>
+        </div>
+        <div class="body">
+            <ul>
+                <li class="active"><a href="purchaselist">Purchase Order</a></li>
+                <li class="page"><a (click)="logOut()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form style="padding-top: 120px;" [formGroup]="purchaseForm" (ngSubmit)="updatePurchaseOrder()">
+
+    <input type="hidden" [(ngModel)]="purchase.pd_id" class="form-control" formControlName="purchaseId">
+    <input type="hidden" [(ngModel)]="purchase.pd_orderno" class="form-control" formControlName="purchaseOrderno">
+    <input type="hidden" [(ngModel)]="purchase.pd_ad_id" class="form-control" formControlName="assetName">
+    <input type="hidden" [(ngModel)]="purchase.pd_type_id" class="form-control" formControlName="assetType">
+    <input type="hidden" [(ngModel)]="purchase.pd_vendor_id" class="form-control" formControlName="vendorName">
+    <input type="hidden" [(ngModel)]="purchase.pd_qty" class="form-control" formControlName="purchaseQty">
+    <input type="hidden" [(ngModel)]="purchase.pd_odate" class="form-control" formControlName="orderDate">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.deliveryDate.errors || formControls.deliveryDate.touched || formControls.deliveryDate.dirty }">
+        <label for="orderDate"><b>Delivery Date</b></label>
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="deliveryDate" required
+            min="{{this.purchaseForm.controls.orderDate.value | date:'yyyy-MM-dd'}}">
+    </div>
+    <div *ngIf="isSubmitted && formControls.deliveryDate.errors" class="help-block">
+        <div *ngIf="formControls.deliveryDate.errors.required">Date is required</div>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>

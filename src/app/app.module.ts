@@ -13,13 +13,16 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
 import { VendorAddComponent } from './vendor-add/vendor-add.component';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
 import { PurchaseAddComponent } from './purchase-add/purchase-add.component';
 import { PurchaseEditComponent } from './purchase-edit/purchase-edit.component';
 import { PurchaseListComponent } from './purchase-list/purchase-list.component';
+import { MasterAddComponent } from './master-add/master-add.component';
+import { MasterEditComponent } from './master-edit/master-edit.component';
+import { MasterListComponent } from './master-list/master-list.component';
+import { MasterStatusComponent } from './master-status/master-status.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,16 @@ import { PurchaseListComponent } from './purchase-list/purchase-list.component';
     AssetGetComponent,
     AssetEditComponent,
     LoginComponent,
-    UserComponent,
     VendorAddComponent,
     VendorListComponent,
     VendorEditComponent,
     PurchaseAddComponent,
     PurchaseEditComponent,
-    PurchaseListComponent
+    PurchaseListComponent,
+    MasterAddComponent,
+    MasterEditComponent,
+    MasterListComponent,
+    MasterStatusComponent
   ],
   imports: [
     BrowserModule,

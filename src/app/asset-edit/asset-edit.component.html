@@ -1,45 +1,56 @@
-<h1 class="display-4" style="text-align: center;">{{title}}</h1>
-<h4 style="text-align: right;">Welcome {{username}}</h4>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="assetlist">Asset Definition</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="vendorlist">Vendor Creation</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="purchaselist">Purchase Order</a>
-        </li>
-        <button style="text-align: right;" (click)="logOut()" class="btn btn-danger">Logout</button>
-    </ul>
-  </nav>
-<form  [formGroup]="assetForm" (ngSubmit)="upAsset()">
-    <input  type="hidden"    fromControlName="assetId">
-        <div class="form-group" [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
-          <label for="assetName"><b>Asset Name</b></label>
-          <input  type="text"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter Asset Name" formControlName="assetName">
+<nav id="navbar" class="push better-nav fixed-top">
+    <div class="container">
+        <div class="head">
+            <a href="#" class="brand">
+                <div class="logo">
+                    <img class="image"
+                        src="https://i0.wp.com/strategichospitalityservices.com/wp-content/uploads/2018/06/Icons-16.png?w=301"
+                        data2x="https://66.media.tumblr.com/avatar_2dcdc7cf5b47_128.png" alt="Branding" />
+                </div>
+                <div class="title">
+                    <h3>Asset Management System</h3>
+                </div>
+            </a>
         </div>
-        <div *ngIf="isSubmitted && formControls.assetName.errors" class="help-block">
-            <div *ngIf="formControls.assetName.errors.required">Asset Name is required</div>
+        <div class="body">
+            <ul>
+                <li class="active"><a href="assetlist">Asset Definiton</a></li>
+                <li class="page"><a href="vendorlist">Vendor Creation</a></li>
+                <li class="page"><a href="masterstatus">Asset Master</a></li>
+                <li class="page"><a (click)="logOut()">Logout</a></li>
+            </ul>
         </div>
-        <div class="alert alert-danger" role="alert" *ngIf="message">
-                {{message}}
-         </div>
-         <div class="form-group">
-            <label for="assetType"><b>Asset Type</b></label>
-                <select class="form-control" id="assettype" name="assettype"   formControlName="assetType">
-                        <option value="">Select Asset Type</option>
-                        <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}</option>
-                </select>
-        </div>
-        <div class="form-group">
-            <label for="assetclass"><b>Asset Class</b></label>
-                <select class="form-control"   formControlName="assetclass">
-                        <option value="">Select Asset Class</option>
-                        <option value="HW">HW</option>
-                        <option value="SW">SW</option>
-                </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Update Asset</button>
+    </div>
+</nav>
+<form style="padding-top: 100px;" [formGroup]="assetForm" (ngSubmit)="upAsset()">
+    <input type="hidden" fromControlName="assetId">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
+        <label for="assetName"><b>Asset Name</b></label>
+        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Asset Name"
+            formControlName="assetName">
+    </div>
+    <div *ngIf="isSubmitted && formControls.assetName.errors" class="help-block">
+        <div *ngIf="formControls.assetName.errors.required">Asset Name is required</div>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="form-group">
+        <label for="assetType"><b>Asset Type</b></label>
+        <select class="form-control" id="assettype" name="assettype" formControlName="assetType">
+            <option value="">Select Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="assetclass"><b>Asset Class</b></label>
+        <select class="form-control" formControlName="assetclass">
+            <option value="">Select Asset Class</option>
+            <option value="HW">HW</option>
+            <option value="SW">SW</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Asset</button>
 </form>

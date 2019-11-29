@@ -1,0 +1,111 @@
+<nav id="navbar" class="push better-nav fixed-top">
+    <div class="container">
+        <div class="head">
+            <a href="#" class="brand">
+                <div class="logo">
+                    <img class="image"
+                        src="https://i0.wp.com/strategichospitalityservices.com/wp-content/uploads/2018/06/Icons-16.png?w=301"
+                        data2x="https://66.media.tumblr.com/avatar_2dcdc7cf5b47_128.png" alt="Branding" />
+                </div>
+                <div class="title">
+                    <h3>Asset Management System</h3>
+                </div>
+            </a>
+        </div>
+        <div class="body">
+            <ul>
+                <li class="page"><a href="assetlist">Asset Definiton</a></li>
+                <li class="page"><a href="vendorlist">Vendor Creation</a></li>
+                <li class="active"><a href="masterstatus">Asset Master</a></li>
+                <li class="page"><a (click)="logOut()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<form style="padding-top: 120px;" [formGroup]="masterForm">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.orderNo.errors || formControls.orderNo.touched || formControls.orderNo.dirty }">
+        <label for="orderNo"><b>Order No.</b></label>
+        <input type="text" (input)="clear()" placeholder="Enter Purchase Order No" class="form-control"
+            formControlName="orderNo">
+        <button class="btn btn-primary" (click)="searchPurchase()">Search</button>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="order">
+        {{order}}
+    </div>
+</form>
+<form [formGroup]="masterForm" *ngIf="order=='Order Available'" (ngSubmit)="addMaster()">
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.assetName.errors || formControls.assetName.touched || formControls.assetName.dirty }">
+        <label for="assetName"><b>Asset Name</b></label>
+        <input type="text" [(ngModel)]="masterview.assetName" class="form-control" formControlName="assetName" disabled>
+    </div>
+    <div *ngIf="isSubmitted && formControls.assetName.errors" class="help-block">
+        <div *ngIf="formControls.assetName.errors.required">Asset Name is required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="assetType"><b>Asset Type</b></label>
+        <input type="text" class="form-control" [(ngModel)]="masterview.assetType" formControlName="assetType" disabled>
+    </div>
+    <div *ngIf="isSubmitted && formControls.assetType.errors" class="help-block">
+        <div *ngIf="formControls.assetType.errors.required">Asset Type is required</div>
+    </div>
+    <div class="form-group">
+        <label for="vendorName"><b>Vendor Name</b></label>
+        <input type="text" class="form-control" [(ngModel)]="masterview.vendorName" formControlName="vendorName"
+            disabled>
+    </div>
+    <div *ngIf="isSubmitted && formControls.vendorName.errors" class="help-block">
+        <div *ngIf="formControls.vendorName.errors.required">Vendor Name is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.manuYear.errors || formControls.manuYear.touched || formControls.manuYear.dirty }">
+        <label for="manuYear"><b>Manufacturing Date</b></label>
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="manuYear" required
+            min="{{todate | date:'yyyy-MM-dd'}}">
+    </div>
+    <div *ngIf="isSubmitted && formControls.manuYear.errors" class="help-block">
+        <div *ngIf="formControls.manuYear.errors.required">Date is required</div>
+    </div>
+    <div class="form-group"
+        [ngClass]="{'has-error': isSubmitted && formControls.purDate.errors || formControls.purDate.touched || formControls.purDate.dirty }">
+        <label for="purDate"><b>Purchase Date</b></label>
+        <input type="date" class="form-control" placeholder="Enter the date" formControlName="purDate" required
+            min="{{todate | date:'yyyy-MM-dd'}}">
+    </div>
+    <div *ngIf="isSubmitted && formControls.purDate.errors" class="help-block">
+        <div *ngIf="formControls.purDate.errors.required">Date is required</div>
+    </div>
+    <div class="form-group">
+        <label for="warranty"><b>Warranty</b></label>
+        <select (change)="warrantySelect()" class="form-control" formControlName="warranty">
+            <option value="">Select</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+    </div>
+    <div *ngIf="warranty=='Y'">
+        <div class="form-group"
+            [ngClass]="{'has-error': isSubmitted && formControls.wFrom.errors || formControls.wFrom.touched || formControls.wFrom.dirty }">
+            <label for="wFrom"><b>Warranty From</b></label>
+            <input type="date" class="form-control" placeholder="Enter the date" formControlName="wFrom" required
+                min="{{todate | date:'yyyy-MM-dd'}}">
+        </div>
+        <div *ngIf="isSubmitted && formControls.wFrom.errors" class="help-block">
+            <div *ngIf="formControls.wFrom.errors.required">Date is required</div>
+        </div>
+        <div class="form-group"
+            [ngClass]="{'has-error': isSubmitted && formControls.wTo.errors || formControls.wTo.touched || formControls.wTo.dirty }">
+            <label for="wTo"><b>Warranty To</b></label>
+            <input type="date" class="form-control" placeholder="Enter the date" formControlName="wTo" required
+                min="{{todate | date:'yyyy-MM-dd'}}">
+        </div>
+        <div *ngIf="isSubmitted && formControls.wTo.errors" class="help-block">
+            <div *ngIf="formControls.wTo.errors.required">Date is required</div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Add</button>
+</form>

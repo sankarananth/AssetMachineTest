@@ -1,4 +1,5 @@
 export class Purchase {
+    pd_id:number;
     pd_orderno: number;
     pd_ad_id: number;
     pd_type_id: number;

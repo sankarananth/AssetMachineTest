@@ -1,0 +1,80 @@
+<nav id="navbar" class="push better-nav fixed-top">
+    <div class="container">
+        <div class="head">
+            <a href="#" class="brand">
+                <div class="logo">
+                    <img class="image"
+                        src="https://i0.wp.com/strategichospitalityservices.com/wp-content/uploads/2018/06/Icons-16.png?w=301"
+                        data2x="https://66.media.tumblr.com/avatar_2dcdc7cf5b47_128.png" alt="Branding" />
+                </div>
+                <div class="title">
+                    <h3>Asset Management System</h3>
+                </div>
+            </a>
+        </div>
+        <div class="body">
+            <ul>
+                <li class="page"><a href="assetlist">Asset Definiton</a></li>
+                <li class="page"><a href="vendorlist">Vendor Creation</a></li>
+                <li class="active"><a href="masterstatus">Asset Master</a></li>
+                <li class="page"><a (click)="logOut()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<nav style="padding-top: 120px;" class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="masterstatus">Purchase Status</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="masterlist">Master List</a>
+        </li>
+    </ul>
+</nav>
+<div style="text-align: right;padding-right: 70px">
+    <button [routerLink]="['/masteradd']" class="btn btn-success">Add Asset</button>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Asset ID</th>
+                    <th>Asset Name</th>
+                    <th>Asset Type</th>
+                    <th>Vendor Name</th>
+                    <th>Model</th>
+                    <th>Serial No.</th>
+                    <th>Manufacturing Date</th>
+                    <th>Purchase Date</th>
+                    <th>Warranty</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let master of masters | async">
+                    <td>{{master.assetId}}</td>
+                    <td>{{master.assetName}}</td>
+                    <td>{{master.assetType}}</td>
+                    <td>{{master.vendorName}}</td>
+                    <td>{{master.modelNo}}</td>
+                    <td>{{master.serialNo}}</td>
+                    <td>{{master.manuYear | date:'dd/MM/yyyy'}}</td>
+                    <td>{{master.purDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{master.warranty}}</td>
+                    <td>{{master.wFrom | date:'dd/MM/yyyy'}}</td>
+                    <td>{{master.wTo | date:'dd/MM/yyyy'}}</td>
+                    <td>
+                        <button [routerLink]="['/masteredit',master.assetId]" [disabled]="master.warranty=='Y'"
+                            class="btn btn-success" style="margin-left: 10px">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
