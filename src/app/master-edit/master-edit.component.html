@@ -53,7 +53,7 @@
         <div class="form-group"
             [ngClass]="{'has-error': isSubmitted && formControls.wTo.errors || formControls.wTo.touched || formControls.wTo.dirty }">
             <label for="wTo"><b>Warranty To</b></label>
-            <input type="date" class="form-control" placeholder="Enter the date" formControlName="wTo">
+            <input type="date" min="{{this.masterForm.controls.wFrom.value | date:'yyyy-MM-dd'}}" class="form-control" placeholder="Enter the date" formControlName="wTo">
         </div>
         <div *ngIf="isSubmitted && formControls.wTo.errors" class="help-block">
             <div *ngIf="formControls.wTo.errors.required">Date is required</div>

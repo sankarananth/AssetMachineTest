@@ -64,7 +64,7 @@
                             placement="left" (confirm)="confirmClicked = true" (cancel)="cancelClicked = true"
                             confirmButtonType="warning" cancelButtonType="default"
                             (click)="confirmClicked=false;cancelClicked=false" [appendToBody]="true"
-                            (confirm)=DeleteOrder(purchase.purchaseId) class="btn btn-outline-danger">Cancel</button>
+                            (confirm)=DeleteOrder(purchase.purchaseId) [disabled]="purchase.purchaseStatus=='Registered Internally'" class="btn btn-outline-danger">Cancel</button>
                     </td>
                 </tr>
             </tbody>

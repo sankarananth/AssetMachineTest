@@ -23,6 +23,7 @@ export class VendorAddComponent implements OnInit {
   vendor: Vendor = new Vendor;
   datemessage: string;
   message: string;
+  isSubmitted = false;
   constructor(private vendorservice: VendorService, private assetservice: AssetService, private vFormBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private authservice: AuthService) { }
 
   ngOnInit() {
@@ -41,6 +42,10 @@ export class VendorAddComponent implements OnInit {
     return this.vendorForm.controls;
   }
   addVendor() {
+    this.isSubmitted=true;
+    if (this.vendorForm.invalid) {
+      return;
+    }
     this.vendor.vd_name = this.vendorForm.controls.vendorname.value;
     this.vendor.vd_type = this.vendorForm.controls.vendortype.value;
     this.vendor.vd_type_id = this.vendorForm.controls.vassettype.value;

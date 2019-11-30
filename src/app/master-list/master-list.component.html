@@ -57,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let master of masters | async">
+                <tr *ngFor="let master of masters | async | paginate:{itemsPerPage:4,currentPage:p};let i=index">
                     <td>{{master.assetId}}</td>
                     <td>{{master.assetName}}</td>
                     <td>{{master.assetType}}</td>
@@ -76,5 +76,6 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
 </div>

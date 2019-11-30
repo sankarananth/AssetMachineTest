@@ -23,6 +23,7 @@ import { MasterAddComponent } from './master-add/master-add.component';
 import { MasterEditComponent } from './master-edit/master-edit.component';
 import { MasterListComponent } from './master-list/master-list.component';
 import { MasterStatusComponent } from './master-status/master-status.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MasterStatusComponent } from './master-status/master-status.component';
     ReactiveFormsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' 
-    })
+    }),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

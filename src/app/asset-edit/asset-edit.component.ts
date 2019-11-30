@@ -24,7 +24,7 @@ export class AssetEditComponent implements OnInit {
   asset: Asset = new Asset;
   message: string;
   username: string;
-
+  isSubmitted = false;
   ngOnInit() {
     this.assetForm = this.asFormBuilder.group({
       assetId: [Validators.required],
@@ -49,6 +49,10 @@ export class AssetEditComponent implements OnInit {
   }
   upAsset() //update asset using this function
   {
+    this.isSubmitted=true;
+    if (this.assetForm.invalid) {
+      return;
+    }
     this.asset.ad_id = this.id;
     this.asset.ad_name = this.assetForm.controls.assetName.value;
     this.asset.ad_type_id = this.assetForm.controls.assetType.value;

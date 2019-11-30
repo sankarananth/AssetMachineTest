@@ -25,16 +25,16 @@ const routes: Routes = [
   {path:'assetlist',component:AssetGetComponent,canActivate:[AuthGuard]},
   {path:'assetadd',component:AssetAddComponent,canActivate:[AuthGuard]},
   {path:'assetedit/:id',component:AssetEditComponent,canActivate:[AuthGuard]},
-  {path:'vendorlist',component:VendorListComponent},
-  {path:'vendoradd',component:VendorAddComponent},
-  {path:'vendoredit/:id',component:VendorEditComponent},
-  {path:'purchaselist',component:PurchaseListComponent},
-  {path:'purchaseadd',component:PurchaseAddComponent},
-  {path:'purchaseedit/:id',component:PurchaseEditComponent},
-  {path:'masterlist',component:MasterListComponent},
-  {path:'masteradd',component:MasterAddComponent},
-  {path:'masteredit/:id',component:MasterEditComponent},
-  {path:'masterstatus',component:MasterStatusComponent}
+  {path:'vendorlist',component:VendorListComponent,canActivate:[AuthGuard]},
+  {path:'vendoradd',component:VendorAddComponent,canActivate:[AuthGuard]},
+  {path:'vendoredit/:id',component:VendorEditComponent,canActivate:[AuthGuard]},
+  {path:'purchaselist',component:PurchaseListComponent,canActivate:[AuthGuard]},
+  {path:'purchaseadd',component:PurchaseAddComponent,canActivate:[AuthGuard]},
+  {path:'purchaseedit/:id',component:PurchaseEditComponent,canActivate:[AuthGuard]},
+  {path:'masterlist',component:MasterListComponent,canActivate:[AuthGuard]},
+  {path:'masteradd',component:MasterAddComponent,canActivate:[AuthGuard]},
+  {path:'masteredit/:id',component:MasterEditComponent,canActivate:[AuthGuard]},
+  {path:'masterstatus',component:MasterStatusComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -22,6 +22,7 @@ export class VendorEditComponent implements OnInit {
   vendor: Vendor = new Vendor;
   id: number;
   message: string;
+  isSubmitted=false;
   constructor(private route: ActivatedRoute, private vendorservice: VendorService, private assetservice: AssetService, private vFormBuilder: FormBuilder, private toastr: ToastrService, private router: Router, private authservice: AuthService) { }
 
   ngOnInit() {
@@ -63,7 +64,11 @@ export class VendorEditComponent implements OnInit {
       return {};
     }
   }
-  updateVendor() {
+  updateVendor() { 
+    this.isSubmitted=true;
+    if (this.vendorForm.invalid) {
+      return;
+    }
     this.vendor.vd_id = this.vendorForm.controls['vendorId'].value;
     this.vendor.vd_name = this.vendorForm.controls['vendorname'].value;
     this.vendor.vd_type = this.vendorForm.controls['vendortype'].value;
